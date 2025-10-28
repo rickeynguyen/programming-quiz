@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Practice Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Python Programming Practice Portal</h1>
+
+        <div id="topic-selection">
+            <h2>Choose a topic to practice:</h2>
+            <div id="topics-list"></div>
+        </div>
+
+        <div id="quiz-area" class="hidden">
+            <h2 id="current-topic"></h2>
+            <div id="question-container">
+                <p id="question-text"></p>
+                <input type="text" id="answer-input" placeholder="Your answer here...">
+                <button id="submit-answer">Submit</button>
+            </div>
+            <div id="result-container" class="hidden">
+                <p id="result-text"></p>
+                <p id="explanation-text"></p>
+                <button id="next-question" class="hidden">Next Question</button>
+            </div>
+            <div id="score-container">
+                <p>Score: <span id="correct-count">0</span> Correct, <span id="incorrect-count">0</span> Incorrect</p>
+            </div>
+            <div id="quiz-controls">
+                <button id="chat-button">Chat about this question</button>
+                <button id="change-topic">Change Topic</button>
+            </div>
+        </div>
+
+        <div id="chat-area" class="hidden">
+            <h3>Chat</h3>
+            <div id="chat-history"></div>
+            <input type="text" id="chat-input" placeholder="Ask a follow-up question...">
+            <button id="send-chat">Send</button>
+            <button id="close-chat">Close Chat</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
