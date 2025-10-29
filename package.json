@@ -1,5 +1,9 @@
 {
-  "name": "python-quiz",
+  "name": "programming-quiz",
   "version": "1.0.0",
-  "description": "A Python programming test portal for college computer science students."
+  "description": "A Python programming test portal for college computer science students.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rickeynguyen/programming-quiz.git"
+  }
 }
