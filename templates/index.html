@@ -13,18 +13,27 @@
         <div id="topic-selection">
             <h2>Choose a topic to practice:</h2>
             <div id="topics-list"></div>
+            <div id="topic-management">
+                <h3>Manage Topics</h3>
+                <div id="add-topic-form">
+                    <input type="text" id="new-topic-input" placeholder="New topic name...">
+                    <button id="add-topic-btn">Add Topic</button>
+                </div>
+            </div>
         </div>
 
         <div id="quiz-area" class="hidden">
             <h2 id="current-topic"></h2>
             <div id="question-container">
                 <p id="question-text"></p>
-                <input type="text" id="answer-input" placeholder="Your answer here...">
+                <textarea id="answer-input" placeholder="Your answer here..." rows="1"></textarea>
                 <button id="submit-answer">Submit</button>
             </div>
             <div id="result-container" class="hidden">
                 <p id="result-text"></p>
                 <p id="explanation-text"></p>
+                <button id="eli5-button" class="hidden">Explain Like I'm 5</button>
+                <div id="eli5-explanation" class="hidden"></div>
                 <button id="next-question" class="hidden">Next Question</button>
             </div>
             <div id="score-container">

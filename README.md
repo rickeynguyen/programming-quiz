@@ -8,8 +8,15 @@ This is a web-based learning portal for college computer science students to pra
     Make sure you have Python 3 installed. It is recommended to use a virtual environment.
 
     ```bash
+    # Create virtual environment (if not already created)
     python3 -m venv .venv
-    source .venv/bin/activate
+    
+    # Activate virtual environment
+    source .venv/bin/activate  # On Linux/Mac
+    # OR
+    .venv\Scripts\activate  # On Windows
+    
+    # Install dependencies
     pip install -r requirements.txt
     ```
 
@@ -21,10 +28,21 @@ This is a web-based learning portal for college computer science students to pra
     ```
 
 3.  **Run the Application**:
-    With the virtual environment activated, run the Flask application:
-
+    
+    **Option A - Using the run script (recommended):**
     ```bash
-    flask run
+    ./run.sh
+    ```
+    
+    **Option B - Manual activation:**
+    ```bash
+    # Activate virtual environment first
+    source .venv/bin/activate  # On Linux/Mac
+    # OR
+    .venv\Scripts\activate  # On Windows
+    
+    # Then run the app
+    python app.py
     ```
 
     The application will be available at `http://127.0.0.1:5000`.
