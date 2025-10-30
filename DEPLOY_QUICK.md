@@ -15,7 +15,7 @@ Visit: https://dashboard.render.com/select-repo
 Name:           programming-quiz
 Region:         (your choice)
 Branch:         main
-Build Command:  ./build.sh
+Build Command:  pip install --upgrade pip && pip install -r requirements.txt
 Start Command:  gunicorn app:app
 ```
 

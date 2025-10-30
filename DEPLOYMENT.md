@@ -37,7 +37,7 @@ Fill in the following settings:
 - **Branch**: `main`
 - **Root Directory**: Leave blank
 - **Runtime**: `Python 3`
-- **Build Command**: `./build.sh`
+- **Build Command**: `pip install --upgrade pip && pip install -r requirements.txt`
 - **Start Command**: `gunicorn app:app`
 - **Instance Type**: `Free` (or choose paid for better performance)
 
