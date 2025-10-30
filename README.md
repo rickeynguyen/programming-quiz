@@ -69,3 +69,12 @@ The app generates diverse question types aligned with college CS exam formats:
     ```
 
     The application will be available at `http://127.0.0.1:5000`.
+
+## Deployment to Render
+
+Want to deploy this app to the cloud? Check out:
+- **[Quick Deployment Guide](DEPLOY_QUICK.md)** - 5-minute setup
+- **[Detailed Deployment Guide](DEPLOYMENT.md)** - Full documentation
+
+Your app will be live at: `https://your-app-name.onrender.com`
+
