@@ -125,12 +125,38 @@ def get_question():
 
     # Vary the question types for more diversity
     question_types = [
-        f"Generate a short coding question about Python '{topic}'. Ask the student to write a small code snippet or complete a function. ONLY provide the question, do NOT include the answer or solution.",
+        # Basic coding questions
+        f"Generate a short coding question about Python '{topic}'. Ask the student to write a small code snippet or complete a function with specific requirements. ONLY provide the question, do NOT include the answer or solution.",
+        
+        # Multiple choice
         f"Create a multiple-choice question about Python '{topic}' that tests understanding of syntax or definitions. Provide ONLY the question with answer choices (A, B, C, D), do NOT reveal which answer is correct. At the end, add 'Answer with the letter of your choice (e.g., A, B, C, or D).'",
+        
+        # Fill in the blank
         f"Write a fill-in-the-blank question about Python '{topic}' focusing on a specific syntax or concept. ONLY provide the question with blanks, do NOT provide the answer.",
+        
+        # Output prediction
         f"Generate a 'what will be the output' question about Python '{topic}' with a small code example. Ask what the output will be, but do NOT provide the actual answer.",
+        
+        # True/false
         f"Create a true/false question about Python '{topic}'. State the claim and ask if it's true or false, but do NOT provide the answer or explanation.",
-        f"Ask a conceptual question about Python '{topic}' that requires a short answer explaining how something works. ONLY ask the question, do NOT provide the answer."
+        
+        # Conceptual
+        f"Ask a conceptual question about Python '{topic}' that requires a short answer explaining how something works. ONLY ask the question, do NOT provide the answer.",
+        
+        # Code comprehension - NEW (like test Q1)
+        f"Provide a Python code snippet about '{topic}' (5-10 lines) and ask the student to analyze what it does or what value it returns for specific inputs. Do NOT provide the answer. Format: Show the code, then ask 'What does this function return when called with [specific inputs]?'",
+        
+        # Code comprehension with reasoning - NEW (like test Q1c)
+        f"Show a Python function related to '{topic}' and ask a multiple-choice question about its behavior or a statement that must be true about its inputs/outputs. Provide choices A, B, C, D. Do NOT reveal the answer.",
+        
+        # Function writing with constraints - NEW (like test Q2, Q4)
+        f"Create a function-writing question about '{topic}'. Specify: function name, parameters, return type, and specific behavior requirements. Include 1-2 example calls with expected outputs. Ask student to implement the function. Do NOT provide the solution.",
+        
+        # Recursion tracing - NEW (like test Q3) - only use for recursion topic
+        f"For the topic '{topic}', if it involves recursion, provide a recursive function and ask about its execution: 'How many times is the function called?' or 'What is the order of operations?' or 'What is the base case reached first?'. Make it multiple choice with options A, B, C, D. Do NOT reveal the answer." if 'recurs' in topic.lower() else f"Create a step-by-step execution question about '{topic}'. Show code and ask what happens at each step or what the final result is. Multiple choice format with A, B, C, D.",
+        
+        # Input/output specification - NEW (like test Q1b)
+        f"Show a Python function related to '{topic}' and ask: 'Provide specific input values that would make this function return [True/False/a specific value]'. Do NOT give the answer, just pose the question with the function code."
     ]
     
     import random
@@ -140,10 +166,10 @@ def get_question():
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant that generates Python quiz questions. Generate ONLY the question itself without providing any answers, solutions, or explanations. The student should solve it themselves."},
+                {"role": "system", "content": "You are a helpful assistant that generates Python quiz questions similar to college CS exams. Generate ONLY the question itself without providing any answers, solutions, or explanations. The student should solve it themselves. For code comprehension questions, provide clear, runnable code. For function-writing questions, specify exact requirements and examples."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=250,
+            max_tokens=400,
             temperature=1.2,  # Increase randomness
         )
         question = response.choices[0].message.content.strip()
@@ -193,10 +219,10 @@ Explanation: The student's answer is incorrect because..."""
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a helpful Python tutor that validates student answers. You MUST respond in this exact format:\n\nLine 1: Either 'CORRECT' or 'INCORRECT' (nothing else on this line)\nLine 2 onwards: Explanation\n\nFor multiple-choice questions, accept answers in any format: just the letter (a/A), letter with parenthesis (A)), or the full option text. Be lenient with answer formats."},
-                {"role": "user", "content": f"Question: {question}\n\nStudent's answer: {answer}\n\nValidate if the student's answer is correct. For multiple-choice questions, the student might answer with just a letter (like 'b' or 'B'), so check if their answer matches the correct option by letter. Remember: First line must be ONLY 'CORRECT' or 'INCORRECT', then provide explanation."}
+                {"role": "system", "content": "You are a helpful Python tutor that validates student answers. You MUST respond in this exact format:\n\nLine 1: Either 'CORRECT' or 'INCORRECT' (nothing else on this line)\nLine 2 onwards: Explanation\n\nFor multiple-choice questions, accept answers in any format: just the letter (a/A), letter with parenthesis (A)), or the full option text. For code questions, be lenient with style differences (spacing, variable names) but strict about logic. For code comprehension questions, accept equivalent answers."},
+                {"role": "user", "content": f"Question: {question}\n\nStudent's answer: {answer}\n\nValidate if the student's answer is correct. For multiple-choice questions, the student might answer with just a letter (like 'b' or 'B'), so check if their answer matches the correct option by letter. For coding questions, verify the logic is correct even if formatting differs slightly. For analysis questions, check if the reasoning is sound. Remember: First line must be ONLY 'CORRECT' or 'INCORRECT', then provide detailed explanation with the correct answer if they're wrong."}
             ],
-            max_tokens=500,
+            max_tokens=600,
         )
         result_text = response.choices[0].message.content.strip()
     except (RateLimitError, APIStatusError) as e:

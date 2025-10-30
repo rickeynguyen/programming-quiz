@@ -1,7 +1,12 @@
 [
   "functions",
-  "map/filter/reduce",
   "recursion",
-  "immutable data structures",
-  "condition"
+  "list manipulation",
+  "string operations",
+  "conditional logic",
+  "loops and iteration",
+  "list comprehensions",
+  "function parameters and return values",
+  "map/filter/reduce",
+  "immutable data structures"
 ]

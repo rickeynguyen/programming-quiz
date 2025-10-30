@@ -1,6 +1,29 @@
-# Python Programming Test Portal
+# Python Programming Quiz Portal
 
-This is a web-based learning portal for college computer science students to practice Python programming concepts. The focus is on memorizing definitions and syntax through interactive, AI-generated quizzes.
+This is a web-based learning portal for college computer science students to practice Python programming concepts. The portal generates quiz questions similar to college CS exams, with AI-powered validation and explanations.
+
+## Features
+
+### Question Types
+The app generates diverse question types aligned with college CS exam formats:
+
+1. **Multiple Choice** - Test understanding of syntax and definitions
+2. **Code Comprehension** - Analyze given code and predict behavior
+3. **Function Writing** - Implement functions with specific requirements
+4. **Recursion Tracing** - Understand recursive execution and call patterns
+5. **Output Prediction** - Determine what code will output
+6. **Input Specification** - Provide inputs that produce specific outputs
+7. **Fill-in-the-Blank** - Complete code snippets
+8. **True/False** - Verify understanding of concepts
+9. **Conceptual Questions** - Explain how Python features work
+
+### Interactive Features
+- **Topic Management** - Add, delete, and view explanations for topics
+- **AI Validation** - Automatic answer checking with detailed feedback
+- **ELI5 Mode** - Get simplified explanations for complex concepts
+- **Chat Feature** - Ask follow-up questions about any quiz question
+- **Score Tracking** - Monitor correct/incorrect answers
+- **Markdown Formatting** - Beautiful code display with syntax highlighting
 
 ## Setup and Running the Application
 
